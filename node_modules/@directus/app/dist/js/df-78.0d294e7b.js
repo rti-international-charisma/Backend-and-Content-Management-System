@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["df-78"],{5638:function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=n;var u={lastWeek:"'letzten' eeee 'um' p",yesterday:"'gestern um' p",today:"'heute um' p",tomorrow:"'morgen um' p",nextWeek:"eeee 'um' p",other:"P"};function n(e,t,o,n){return u[e]}e.exports=t.default}}]);

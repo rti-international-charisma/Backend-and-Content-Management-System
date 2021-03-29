@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["df-287"],{2386:function(e,t,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=o;var l={lastWeek:"eeee 'li għadda' 'fil-'p",yesterday:"'Il-bieraħ fil-'p",today:"'Illum fil-'p",tomorrow:"'Għada fil-'p",nextWeek:"eeee 'fil-'p",other:"P"};function o(e,t,a,o){return l[e]}e.exports=t.default}}]);

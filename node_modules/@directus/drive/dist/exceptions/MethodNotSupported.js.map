@@ -1,0 +1,1 @@
+{"version":3,"file":"MethodNotSupported.js","sourceRoot":"","sources":["../../src/exceptions/MethodNotSupported.ts"],"names":[],"mappings":";;;AAAA,qDAAmD;AAEnD,MAAa,kBAAmB,SAAQ,kCAAgB;IACvD,YAAY,IAAY,EAAE,MAAc;QACvC,KAAK,CAAC,UAAU,IAAI,oCAAoC,MAAM,EAAE,EAAE,GAAG,EAAE,wBAAwB,CAAC,CAAC;IAClG,CAAC;CACD;AAJD,gDAIC"}

@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["df-401"],{f490:function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=n;var p={lastWeek:"'ئ‍ۆتكەن' eeee 'دە' p",yesterday:"'تۈنۈگۈن دە' p",today:"'بۈگۈن دە' p",tomorrow:"'ئەتە دە' p",nextWeek:"eeee 'دە' p",other:"P"};function n(e,t,o,n){return p[e]}e.exports=t.default}}]);

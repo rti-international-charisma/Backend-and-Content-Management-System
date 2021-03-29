@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["df-299"],{"4cb3":function(e,o,t){"use strict";Object.defineProperty(o,"__esModule",{value:!0}),o.default=a;var n={lastWeek:"'afgelopen' eeee 'om' p",yesterday:"'gisteren om' p",today:"'vandaag om' p",tomorrow:"'morgen om' p",nextWeek:"eeee 'om' p",other:"P"};function a(e,o,t,a){return n[e]}e.exports=o.default}}]);

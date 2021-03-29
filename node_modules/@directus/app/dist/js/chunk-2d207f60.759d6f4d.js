@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d207f60"],{a380:function(e,n,s){"use strict";s.r(n),n["default"]="# Common Issues\n\n> TK\n\n## Why isn't Directus properly saving Chinese characters or emoji?\n\nPlease ensure that the encoding for your database, tables, and fields are set to `utf8mb4`.\n"}}]);

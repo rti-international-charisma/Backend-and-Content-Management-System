@@ -1,0 +1,1 @@
+{"version":3,"file":"UnknownException.js","sourceRoot":"","sources":["../../src/exceptions/UnknownException.ts"],"names":[],"mappings":";;;AAAA,qDAAmD;AAEnD,MAAa,gBAAiB,SAAQ,kCAAgB;IAErD,YAAY,GAAU,EAAE,SAAiB,EAAE,IAAY;QACtD,KAAK,CACJ,2CAA2C,IAAI;;cAEpC,SAAS;;EAErB,GAAG,CAAC,KAAK,EAAE,EACV,GAAG,EACH,WAAW,CACX,CAAC;QACF,IAAI,CAAC,GAAG,GAAG,GAAG,CAAC;IAChB,CAAC;CACD;AAdD,4CAcC"}

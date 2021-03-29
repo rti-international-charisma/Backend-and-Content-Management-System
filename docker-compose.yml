@@ -1,0 +1,54 @@
+version: '3.2'
+
+services:
+  database:
+    container_name: database
+    image: postgres:12
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks:
+      - directus
+    environment:
+      POSTGRES_USER: 'charisma'
+      POSTGRES_PASSWORD: 'charisma'
+      POSTGRES_DB: 'charisma-cms'
+
+  cache:
+    container_name: cache
+    image: redis:6
+    networks:
+      - directus
+
+  directus:
+    container_name: directus
+    image: directus/directus:v9.0.0-rc.24
+    ports:
+      - "8055:8055"
+    networks:
+      - directus
+    depends_on:
+      - cache
+      - database
+    environment:
+      KEY: 'de140a15-a496-4c68-ae1f-eaf37f8506a9'
+      SECRET: 'jfzl_mpkhhKZ8H4gWSmUnFbP5u5dU7l5'
+
+      DB_CLIENT: 'pg'
+      DB_HOST: 'database'
+      DB_PORT: '5432'
+      DB_DATABASE: 'charisma-cms'
+      DB_USER: 'charisma'
+      DB_PASSWORD: 'charisma'
+
+      CACHE_ENABLED: 'true'
+      CACHE_STORE: 'redis'
+      CACHE_REDIS: 'redis://cache:6379'
+
+      ADMIN_EMAIL: 'admin@charisma.com'
+      ADMIN_PASSWORD: 'charisma'
+
+volumes:
+  pg-data:
+
+networks:
+  directus:

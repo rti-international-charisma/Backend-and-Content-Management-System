@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d216f86"],{c575:function(n,i){n.exports={activity:"Virkni",choices:"Val",add_new:"Bæta við nýjum"}}}]);

@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d228e94"],{dacd:function(n,d,a){"use strict";a.r(d),d["default"]="# Creating a Standard Fields\n\n> TK\n"}}]);

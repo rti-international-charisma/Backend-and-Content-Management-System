@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["df-263"],{"8f4e":function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=n;var a={lastWeek:"'Praėjusį' eeee p",yesterday:"'Vakar' p",today:"'Šiandien' p",tomorrow:"'Rytoj' p",nextWeek:"eeee p",other:"P"};function n(e,t,o,n){return a[e]}e.exports=t.default}}]);

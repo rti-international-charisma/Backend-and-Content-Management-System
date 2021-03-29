@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["df-305"],{"2cfe":function(e,o,t){"use strict";Object.defineProperty(o,"__esModule",{value:!0}),o.default=r;var n={lastWeek:"'vorige' eeee 'om' p",yesterday:"'gisteren om' p",today:"'vandaag om' p",tomorrow:"'morgen om' p",nextWeek:"eeee 'om' p",other:"P"};function r(e,o,t,r){return n[e]}e.exports=o.default}}]);
