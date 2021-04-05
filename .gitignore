@@ -1,3 +1,5 @@
+#IDE
+.idea
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

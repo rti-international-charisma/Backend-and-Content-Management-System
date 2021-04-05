@@ -40,7 +40,7 @@ services:
       DB_USER: 'charisma'
       DB_PASSWORD: 'charisma'
 
-      CACHE_ENABLED: 'true'
+      CACHE_ENABLED: 'false'
       CACHE_STORE: 'redis'
       CACHE_REDIS: 'redis://cache:6379'
 
