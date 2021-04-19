@@ -1,8 +1,11 @@
 version: '3.2'
 
+x-aws-cluster: 'arn:aws:ecs:ap-south-1:402711366397:cluster/charisma-directus'
+x-aws-vpc: 'vpc-061f295db5349230b'
+
 services:
-  database:
-    container_name: database
+  directusdb:
+    container_name: directusdb
     image: postgres:12
     volumes:
       - pg-data:/var/lib/postgresql/data
@@ -28,7 +31,7 @@ services:
       - directus
     depends_on:
       - cache
-      - database
+      - directusdb
     environment:
       KEY: 'de140a15-a496-4c68-ae1f-eaf37f8506a9'
       SECRET: 'jfzl_mpkhhKZ8H4gWSmUnFbP5u5dU7l5'
