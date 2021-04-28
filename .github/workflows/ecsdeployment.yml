@@ -50,7 +50,7 @@ jobs:
         TASK_DEFINITION_JSON: postgres/task-definition.json
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: $TASK_DEFINITION_JSON
+        task-definition: postgres/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_POSTGRES }}
         image: ${{ steps.build-image.outputs.image }}
     
