@@ -67,7 +67,7 @@ jobs:
       id: build-image-redis
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY_POSTGRES: ${{ secrets.ECR_REPOSITORY_REDIS }}
+        ECR_REPOSITORY_REDIS: ${{ secrets.ECR_REPOSITORY_REDIS }}
         IMAGE_NAME_REDIS: redis:6
         IMAGE_TAG: latest
       run: |
@@ -101,7 +101,7 @@ jobs:
       id: pull-image-directus
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY_POSTGRES: ${{ secrets.ECR_REPOSITORY_DIRECTUS }}
+        ECR_REPOSITORY_DIRECTUS: ${{ secrets.ECR_REPOSITORY_DIRECTUS }}
         IMAGE_NAME: directus/directus
         IMAGE_TAG: latest
       run: |
