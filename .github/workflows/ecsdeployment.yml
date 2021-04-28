@@ -52,7 +52,7 @@ jobs:
       with:
         task-definition: postgres/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_POSTGRES }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: $ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:latest
     
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
