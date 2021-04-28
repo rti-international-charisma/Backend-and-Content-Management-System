@@ -46,9 +46,11 @@ jobs:
           
     - name: Fill in the new image ID in the Amazon ECS task definitionfor postgres
       id: task-def
+      env:
+        TASK_DEFINITION_JSON: task-definition-postgres.json
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: task-definition-postgres.json
+        task-definition: $TASK_DEFINITION_JSON
         container-name: ${{ secrets.AWS_CONTAINER_NAME_POSTGRES }}
         image: ${{ steps.build-image.outputs.image }}
     
