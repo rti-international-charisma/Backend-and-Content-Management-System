@@ -52,7 +52,7 @@ jobs:
       with:
         task-definition: postgres/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_POSTGRES }}
-        image: $ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:latest
+        image: ${{ steps.pull-image-postgres.outputs.image }}
     
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
@@ -87,12 +87,12 @@ jobs:
       with:
         task-definition: postgres/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_REDIS }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ steps.build-image-redis.outputs.image }}
     
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        task-definition: ${{ steps.task-def-redis.outputs.task-definition }}
         service: ${{ secrets.SERVICE_NAME_REDIS }}
         cluster: ${{ secrets.AWS_CLUSTER }}
         wait-for-service-stability: true
@@ -121,12 +121,12 @@ jobs:
       with:
         task-definition: postgres/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_DIRECTUS }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ steps.pull-image-directus.outputs.image }}
     
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        task-definition: ${{ steps.task-def-directus.outputs.task-definition }}
         service: ${{ secrets.SERVICE_NAME_DIRECTUS }}
         cluster: ${{ secrets.AWS_CLUSTER }}
         wait-for-service-stability: true
