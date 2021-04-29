@@ -24,20 +24,7 @@
       "command": null,
       "linuxParameters": null,
       "cpu": 0,
-      "environment": [
-        {
-          "name": "POSTGRES_DB",
-          "value": "charisma-cms"
-        },
-        {
-          "name": "POSTGRES_PASSWORD",
-          "value": "charisma"
-        },
-        {
-          "name": "POSTGRES_USER",
-          "value": "charisma"
-        }
-      ],
+      "environment": [],
       "ulimits": null,
       "dnsServers": null,
       "mountPoints": [
@@ -48,7 +35,20 @@
         }
       ],
       "workingDirectory": null,
-      "secrets": null,
+      "secrets": [
+        {
+          "valueFrom": "DIRECTUSDB_POSTGRESDB",
+          "name": "POSTGRES_DB"
+        },
+        {
+          "valueFrom": "DIRECTUSDB_PASSWORD",
+          "name": "POSTGRES_PASSWORD"
+        },
+        {
+          "valueFrom": "DIRECTUSDB_DBUSER",
+          "name": "POSTGRES_USER"
+        }
+      ],
       "dockerSecurityOptions": null,
       "memory": null,
       "memoryReservation": null,
@@ -81,7 +81,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:af-south-1:402711366397:task-definition/charisma-cmsdb:2",
+  "taskDefinitionArn": "arn:aws:ecs:af-south-1:402711366397:task-definition/charisma-cmsdb:9",
   "family": "charisma-cmsdb",
   "requiresAttributes": [
     {
@@ -142,6 +142,12 @@
       "targetId": null,
       "targetType": null,
       "value": null,
+      "name": "ecs.capability.secrets.ssm.environment-variables"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
     },
     {
@@ -157,7 +163,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 2,
+  "revision": 9,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,

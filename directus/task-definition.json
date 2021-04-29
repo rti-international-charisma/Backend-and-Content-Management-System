@@ -26,20 +26,12 @@
       "cpu": 0,
       "environment": [
         {
-          "name": "ADMIN_EMAIL",
-          "value": "admin@charisma.com"
-        },
-        {
-          "name": "ADMIN_PASSWORD",
-          "value": "charisma"
+          "name": "ACCESS_TOKEN_TTL",
+          "value": "15m"
         },
         {
           "name": "CACHE_ENABLED",
           "value": "true"
-        },
-        {
-          "name": "CACHE_REDIS",
-          "value": "charisma-cache-service.cache:6379"
         },
         {
           "name": "CACHE_STORE",
@@ -78,43 +70,90 @@
           "value": "pg"
         },
         {
-          "name": "DB_DATABASE",
-          "value": "charisma-cms"
-        },
-        {
-          "name": "DB_HOST",
-          "value": "charisma-cmsdb-service.cmsdb"
-        },
-        {
-          "name": "DB_PASSWORD",
-          "value": "charisma"
-        },
-        {
-          "name": "DB_PORT",
-          "value": "5432"
-        },
-        {
-          "name": "DB_USER",
-          "value": "charisma"
-        },
-        {
           "name": "EXTENSIONS_PATH",
           "value": "./extensions"
         },
         {
-          "name": "KEY",
-          "value": "de140a15-a496-4c68-ae1f-eaf37f8506a9"
+          "name": "RATE_LIMITER_DURATION",
+          "value": "1"
         },
         {
-          "name": "SECRET",
-          "value": "jfzl_mpkhhKZ8H4gWSmUnFbP5u5dU7l5"
+          "name": "RATE_LIMITER_ENABLED",
+          "value": "false"
+        },
+        {
+          "name": "RATE_LIMITER_POINTS",
+          "value": "25"
+        },
+        {
+          "name": "RATE_LIMITER_STORE",
+          "value": "memory"
+        },
+        {
+          "name": "REFRESH_TOKEN_COOKIE_SAME_SITE",
+          "value": "lax"
+        },
+        {
+          "name": "REFRESH_TOKEN_COOKIE_SECURE",
+          "value": "false"
+        },
+        {
+          "name": "REFRESH_TOKEN_TTL",
+          "value": "7d"
         }
       ],
       "ulimits": null,
       "dnsServers": null,
-      "mountPoints": [],
+      "mountPoints": [
+        {
+          "readOnly": null,
+          "containerPath": "/data",
+          "sourceVolume": "directus_data"
+        }
+      ],
       "workingDirectory": null,
-      "secrets": null,
+      "secrets": [
+        {
+          "valueFrom": "DIRECTUS_DB_DATABASE",
+          "name": "DB_DATABASE"
+        },
+        {
+          "valueFrom": "DIRECTUS_DB_HOST",
+          "name": "DB_HOST"
+        },
+        {
+          "valueFrom": "DIRECTUS_DB_PASSWORD",
+          "name": "DB_PASSWORD"
+        },
+        {
+          "valueFrom": "DIRECTUS_DB_PORT",
+          "name": "DB_PORT"
+        },
+        {
+          "valueFrom": "DIRECTUS_DB_USER",
+          "name": "DB_USER"
+        },
+        {
+          "valueFrom": "DIRECTUS_KEY",
+          "name": "KEY"
+        },
+        {
+          "valueFrom": "DIRECTUS_SECRET",
+          "name": "SECRET"
+        },
+        {
+          "valueFrom": "DIRECTUS_ADMIN_EMAIL",
+          "name": "ADMIN_EMAIL"
+        },
+        {
+          "valueFrom": "DIRECTUS_ADMIN_PASSWORD",
+          "name": "ADMIN_PASSWORD"
+        },
+        {
+          "valueFrom": "DIRECTUS_CACHE_REDIS",
+          "name": "CACHE_REDIS"
+        }
+      ],
       "dockerSecurityOptions": null,
       "memory": null,
       "memoryReservation": null,
@@ -147,7 +186,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:af-south-1:402711366397:task-definition/charisma-directus:8",
+  "taskDefinitionArn": "arn:aws:ecs:af-south-1:402711366397:task-definition/charisma-directus:12",
   "family": "charisma-directus",
   "requiresAttributes": [
     {
@@ -190,6 +229,12 @@
       "targetId": null,
       "targetType": null,
       "value": null,
+      "name": "ecs.capability.secrets.ssm.environment-variables"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
     },
     {
@@ -205,9 +250,18 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 8,
+  "revision": 12,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
-  "volumes": []
+  "volumes": [
+    {
+      "efsVolumeConfiguration": null,
+      "name": "directus_data",
+      "host": {
+        "sourcePath": null
+      },
+      "dockerVolumeConfiguration": null
+    }
+  ]
 }
