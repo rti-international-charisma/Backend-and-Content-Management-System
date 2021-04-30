@@ -33,14 +33,14 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY_POSTGRES: ${{ secrets.ECR_REPOSITORY_POSTGRES }}
-        IMAGE_NAME_PSOTGRES: postgres:12
+        IMAGE_NAME_POSTGRES: postgres:13
         IMAGE_TAG: latest
       run: |
           # pull docker image ,tag it and
           # push it to ECR so that it can
           # be deployed to ECS.
-          docker pull $IMAGE_NAME_PSOTGRES
-          docker tag $IMAGE_NAME_PSOTGRES $ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:$IMAGE_TAG
+          docker pull $IMAGE_NAME_POSTGRES
+          docker tag $IMAGE_NAME_POSTGRES $ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:$IMAGE_TAG"
           
