@@ -1,4 +1,4 @@
-name: Deploy API to Amazon ECS
+name: Deploy Production Directus to Amazon ECS
 
 on:
   workflow_dispatch:
