@@ -1,0 +1,292 @@
+{
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::402711366397:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": null,
+      "environmentFiles": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/prod_charisma-directus",
+          "awslogs-region": "af-south-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "entryPoint": null,
+      "portMappings": [
+        {
+          "hostPort": 8055,
+          "protocol": "tcp",
+          "containerPort": 8055
+        }
+      ],
+      "command": null,
+      "linuxParameters": null,
+      "cpu": 0,
+      "environment": [
+        {
+          "name": "ACCESS_TOKEN_TTL",
+          "value": "15m"
+        },
+        {
+          "name": "CACHE_ENABLED",
+          "value": "true"
+        },
+        {
+          "name": "CACHE_STORE",
+          "value": "redis"
+        },
+        {
+          "name": "CORS_ALLOWED_HEADERS",
+          "value": "Content-Type,Authorization"
+        },
+        {
+          "name": "CORS_CREDENTIALS",
+          "value": "true"
+        },
+        {
+          "name": "CORS_ENABLED",
+          "value": "true"
+        },
+        {
+          "name": "CORS_EXPOSED_HEADERS",
+          "value": "Content-Range"
+        },
+        {
+          "name": "CORS_MAX_AGE",
+          "value": "18000"
+        },
+        {
+          "name": "CORS_METHODS",
+          "value": "GET,POST,PATCH,DELETE"
+        },
+        {
+          "name": "CORS_ORIGIN",
+          "value": "true"
+        },
+        {
+          "name": "DB_CLIENT",
+          "value": "pg"
+        },
+        {
+          "name": "EXTENSIONS_PATH",
+          "value": "./extensions"
+        },
+        {
+          "name": "RATE_LIMITER_DURATION",
+          "value": "1"
+        },
+        {
+          "name": "RATE_LIMITER_ENABLED",
+          "value": "false"
+        },
+        {
+          "name": "RATE_LIMITER_POINTS",
+          "value": "25"
+        },
+        {
+          "name": "RATE_LIMITER_STORE",
+          "value": "memory"
+        },
+        {
+          "name": "REFRESH_TOKEN_COOKIE_SAME_SITE",
+          "value": "lax"
+        },
+        {
+          "name": "REFRESH_TOKEN_COOKIE_SECURE",
+          "value": "false"
+        },
+        {
+          "name": "REFRESH_TOKEN_TTL",
+          "value": "7d"
+        }
+      ],
+      "ulimits": null,
+      "dnsServers": null,
+      "mountPoints": [
+        {
+          "readOnly": null,
+          "containerPath": "/data",
+          "sourceVolume": "prod-localdata"
+        }
+      ],
+      "workingDirectory": null,
+      "secrets": [
+        {
+          "valueFrom": "PROD_DIRECTUS_ADMIN_EMAIL",
+          "name": "ADMIN_EMAIL"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_ADMIN_PASSWORD",
+          "name": "ADMIN_PASSWORD"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_CACHE_REDIS",
+          "name": "CACHE_REDIS"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_DB_DATABASE",
+          "name": "DB_DATABASE"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_DB_HOST",
+          "name": "DB_HOST"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_DB_PASSWORD",
+          "name": "DB_PASSWORD"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_DB_PORT",
+          "name": "DB_PORT"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_DB_USER",
+          "name": "DB_USER"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_KEY",
+          "name": "KEY"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUS_SECRET",
+          "name": "SECRET"
+        }
+      ],
+      "dockerSecurityOptions": null,
+      "memory": null,
+      "memoryReservation": null,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "402711366397.dkr.ecr.af-south-1.amazonaws.com/prod-charisma-directus:latest",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": null,
+      "hostname": null,
+      "extraHosts": null,
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": null,
+      "systemControls": null,
+      "privileged": null,
+      "name": "charisma-directus"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "512",
+  "taskRoleArn": "arn:aws:iam::402711366397:role/ecsTaskExecutionRole",
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:af-south-1:402711366397:task-definition/prod_charisma-directus:2",
+  "family": "prod_charisma-directus",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.efsAuth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.efs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.25"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.secrets.ssm.environment-variables"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.task-eni"
+    }
+  ],
+  "pidMode": null,
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "revision": 2,
+  "status": "ACTIVE",
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": [
+    {
+      "efsVolumeConfiguration": {
+        "transitEncryptionPort": null,
+        "fileSystemId": "fs-bf62db1a",
+        "authorizationConfig": {
+          "iam": "ENABLED",
+          "accessPointId": "fsap-043db98931cfdd5d0"
+        },
+        "transitEncryption": "ENABLED",
+        "rootDirectory": "/"
+      },
+      "name": "prod-localdata",
+      "host": null,
+      "dockerVolumeConfiguration": null
+    }
+  ]
+}
