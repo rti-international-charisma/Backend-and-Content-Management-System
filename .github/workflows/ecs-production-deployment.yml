@@ -1,0 +1,128 @@
+name: Deploy API to Amazon ECS
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    
+    - name: Checkout source code
+      uses: actions/checkout@v1
+      
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1 
+      
+    - name: pull postgres docker image and push image to Amazon ECR
+      id: pull-image-postgres
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY_POSTGRES: ${{ secrets.ECR_REPOSITORY_POSTGRES_PRODUCTION }}
+        IMAGE_NAME_POSTGRES: postgres:12
+        IMAGE_TAG: latest
+      run: |
+          # pull docker image ,tag it and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker pull $IMAGE_NAME_POSTGRES
+          docker tag $IMAGE_NAME_POSTGRES $ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_POSTGRES:$IMAGE_TAG"
+          
+    - name: Fill in the new image ID in the Amazon ECS task definitionfor postgres
+      id: task-def
+      env:
+        TASK_DEFINITION_JSON: postgres/task-definition.json
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: postgres/production/task-definition.json
+        container-name: ${{ secrets.AWS_CONTAINER_NAME_POSTGRES_PRODUCTION }}
+        image: ${{ steps.pull-image-postgres.outputs.image }}
+    
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ secrets.SERVICE_NAME_POSTGRES_PRODUCTION }}
+        cluster: ${{ secrets.AWS_CLUSTER_PRODUCTION }}
+        wait-for-service-stability: true
+        
+        
+    - name: pull redis docker image and push image to Amazon ECR
+      id: build-image-redis
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY_REDIS: ${{ secrets.ECR_REPOSITORY_REDIS_PRODUCTION }}
+        IMAGE_NAME_REDIS: redis:6
+        IMAGE_TAG: latest
+      run: |
+          # pull docker image ,tag it and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker pull $IMAGE_NAME_REDIS
+          docker tag $IMAGE_NAME_REDIS $ECR_REGISTRY/$ECR_REPOSITORY_REDIS:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY_REDIS:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_REDIS:$IMAGE_TAG"
+          
+    - name: Fill in the new image ID in the Amazon ECS task definitionfor postgres
+      id: task-def-redis
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: redis/production/task-definition.json
+        container-name: ${{ secrets.AWS_CONTAINER_NAME_REDIS_PRODUCTION }}
+        image: ${{ steps.build-image-redis.outputs.image }}
+    
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def-redis.outputs.task-definition }}
+        service: ${{ secrets.SERVICE_NAME_REDIS_PRODUCTION }}
+        cluster: ${{ secrets.AWS_CLUSTER_PRODUCTION }}
+        wait-for-service-stability: true
+
+    - name: pull directus docker image and push image to Amazon ECR
+      id: pull-image-directus
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY_DIRECTUS: ${{ secrets.ECR_REPOSITORY_DIRECTUS_PRODUCTION }}
+        IMAGE_NAME: directus/directus
+        IMAGE_TAG: latest
+      run: |
+          # pull docker image ,tag it and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker pull $IMAGE_NAME
+          docker tag $IMAGE_NAME $ECR_REGISTRY/$ECR_REPOSITORY_DIRECTUS:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY_DIRECTUS:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_DIRECTUS:$IMAGE_TAG"
+          
+    - name: Fill in the new image ID in the Amazon ECS task definitionfor postgres
+      id: task-def-directus
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: directus/production/task-definition.json
+        container-name: ${{ secrets.AWS_CONTAINER_NAME_DIRECTUS_PRODUCTION }}
+        image: ${{ steps.pull-image-directus.outputs.image }}
+    
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def-directus.outputs.task-definition }}
+        service: ${{ secrets.SERVICE_NAME_DIRECTUS_PRODUCTION }}
+        cluster: ${{ secrets.AWS_CLUSTER_PRODUCTION }}
+        wait-for-service-stability: true
