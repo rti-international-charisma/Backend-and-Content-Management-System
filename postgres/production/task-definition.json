@@ -24,16 +24,7 @@
       "command": null,
       "linuxParameters": null,
       "cpu": 0,
-      "environment": [
-        {
-          "name": "POSTGRES_PASSWORD\t",
-          "value": "PROD_DIRECTUSDB_PASSWORD"
-        },
-        {
-          "name": "POSTGRES_USER",
-          "value": "PROD_DIRECTUSDB_DBUSER"
-        }
-      ],
+      "environment": [],
       "ulimits": null,
       "dnsServers": null,
       "mountPoints": [
@@ -48,6 +39,14 @@
         {
           "valueFrom": "PROD_DIRECTUSDB_POSTGRESDB",
           "name": "POSTGRES_DB"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUSDB_PASSWORD",
+          "name": "POSTGRES_PASSWORD"
+        },
+        {
+          "valueFrom": "PROD_DIRECTUSDB_DBUSER",
+          "name": "POSTGRES_USER"
         }
       ],
       "dockerSecurityOptions": null,
@@ -82,7 +81,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:af-south-1:402711366397:task-definition/prod_charisma-directusdb:1",
+  "taskDefinitionArn": "arn:aws:ecs:af-south-1:402711366397:task-definition/prod_charisma-directusdb:4",
   "family": "prod_charisma-directusdb",
   "requiresAttributes": [
     {
@@ -164,7 +163,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 1,
+  "revision": 4,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
