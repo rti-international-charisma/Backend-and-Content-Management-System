@@ -47,10 +47,10 @@ jobs:
     - name: Fill in the new image ID in the Amazon ECS task definitionfor postgres
       id: task-def
       env:
-        TASK_DEFINITION_JSON: postgres/task-definition.json
+        TASK_DEFINITION_JSON: .aws/postgres/production/task-definition.json
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: postgres/production/task-definition.json
+        task-definition: .aws/postgres/production/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_POSTGRES_PRODUCTION }}
         image: ${{ steps.pull-image-postgres.outputs.image }}
     
@@ -83,7 +83,7 @@ jobs:
       id: task-def-redis
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: redis/production/task-definition.json
+        task-definition: .aws/redis/production/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_REDIS_PRODUCTION }}
         image: ${{ steps.build-image-redis.outputs.image }}
     
@@ -115,7 +115,7 @@ jobs:
       id: task-def-directus
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: directus/production/task-definition.json
+        task-definition: .aws/directus/production/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_DIRECTUS_PRODUCTION }}
         image: ${{ steps.pull-image-directus.outputs.image }}
     

@@ -12,8 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
-    
+
     - name: Checkout source code
       uses: actions/checkout@v1
       
@@ -47,10 +46,10 @@ jobs:
     - name: Fill in the new image ID in the Amazon ECS task definitionfor postgres
       id: task-def
       env:
-        TASK_DEFINITION_JSON: postgres/task-definition.json
+        TASK_DEFINITION_JSON: .aws/postgres/task-definition.json
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: postgres/task-definition.json
+        task-definition: .aws/postgres/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_POSTGRES }}
         image: ${{ steps.pull-image-postgres.outputs.image }}
     
@@ -83,7 +82,7 @@ jobs:
       id: task-def-redis
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: redis/task-definition.json
+        task-definition: .aws/redis/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_REDIS }}
         image: ${{ steps.build-image-redis.outputs.image }}
     
@@ -115,7 +114,7 @@ jobs:
       id: task-def-directus
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: directus/task-definition.json
+        task-definition: .aws/directus/task-definition.json
         container-name: ${{ secrets.AWS_CONTAINER_NAME_DIRECTUS }}
         image: ${{ steps.pull-image-directus.outputs.image }}
     
