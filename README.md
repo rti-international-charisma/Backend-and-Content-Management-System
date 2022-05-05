@@ -28,7 +28,3 @@
 - Admin Login details are present in AWS System parameters
 
 
-### License
-- Execute the github actions either for staging or production
-- The action will set up the env on staging or production respectively
-- Admin Login details are present in AWS System parameters
