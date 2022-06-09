@@ -13,18 +13,24 @@
 ### Reference to use the CMS
 - https://docs.directus.io/getting-started/quickstart/
 
-## Setup on AWS
 
-### Setup
-- Its uses the github actions and task definitions from the repo
-- The current setup uses POSTGRES, Directus 9 and REDIS Cache docker images
-- S3 for assets
-- Systems Manager for environment variables
+## Additional Software
 
+This project will use the following:
 
-### Steps
-- Execute the github actions either for staging or production
-- The action will set up the env on staging or production respectively
-- Admin Login details are present in AWS System parameters
+- Postgres
+- S3 for assets (will need to be configured)
 
 
+##  Related projects
+
+This project has counterpart projects:
+
+- [Charisma-dart: Flutter Web Front end](https://github.com/rti-international-charisma/charisma-dart)
+- [Charisma-API: APIS's this application will integrate with](https://github.com/rti-international-charisma/charisma-api)
+
+## License information
+
+This project is licensed under the [CC BY-NC creative commons license](https://creativecommons.org/licenses/by-nc/4.0/)
+
+*This mobile website was developed by RTI International, Wits Reproductive Health and Research Institute, and FHI360 with technical support from Equal Experts and Fluidity Software. It was funded through Digital Square, a PATH-led initiative funded and designed by the United States Agency for International Development, the Bill & Melinda Gates Foundation, and a consortium of other donors. It was made possible by the generous support of the American people through the United States Agency for International Development (USAID). The contents are the responsibility of PATH and do not necessarily reflect the views of USAID or the United States Government.*
